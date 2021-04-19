@@ -6,10 +6,18 @@ const app = new Vue({
         tarea: '',
         importancia: '',
         estado: false,
-        arrayTareas: []
+        arrayTareas: [],
+        alerta: false
     },
     methods: {
         agregarTarea(){
+            if(this.titulo.length == 0 || this.tarea.length == 0 || this.importancia.length == 0){
+                this.alerta = true
+                setTimeout(() => {
+                    this.alerta = false
+                }, 2000);
+                return;
+            }
             let objTarea;
             objTarea = {
                 titulo: this.titulo,

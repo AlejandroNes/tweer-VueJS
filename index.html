@@ -39,6 +39,9 @@
               </select>
             </div>
             <button @click="agregarTarea()" class="btn btn-info btn-block">AGREGAR TAREA</button>
+            <div v-if="alerta" class="alert alert-danger my-2 text-center border border-danger">
+                <h5 class="text-danger">Completa todos los campos</h5>
+            </div>
           </div>
         </div>
         <div class="col-12 col-sm-4">
