@@ -45,12 +45,26 @@
           </div>
         </div>
         <div class="col-12 col-sm-4">
-          <div class="nes p-2">
-            <h4 class="text-white font-weight-light">Total tareas: <span class="badge badge-info" v-text="totalTareas"></span></h4>
-            <h4 class="text-white font-weight-light">Completas: <span class="badge badge-success" v-text="completas"></span></h4>
-            <h4 class="text-white font-weight-light">Incompletas: <span class="badge badge-danger" v-text="incompletas"></span></h4>
+          <div class="nes p-4">
+
+            <h6  class=" font-weight-light text-info">Total de tareas</h6>
+            <div class="progress my-1 ">
+              <div class="progress-bar progress-bar-striped" role="progressbar" 
+              :style="{'width': totalTareas * 5 +'%'}" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">{{totalTareas}} total</div>
+            </div>
+            <h6  class=" font-weight-light text-success">Tareas Completas</h6>
+            <div class="progress my-1 ">
+              <div class="progress-bar progress-bar-striped bg-success" role="progressbar" 
+              :style="{'width': completas * 5 +'%'}" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">{{completas}} completas</div>
+            </div>
+            <h6  class=" font-weight-light text-danger">Tareas Incompletas</h6>
+            <div class="progress my-1 ">
+              <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" 
+              :style="{'width': incompletas * 5 +'%'}" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">{{incompletas}} incompletas</div>
+            </div>
           </div>
         </div>
+
       </div>
 
       <div class="row">
@@ -72,8 +86,9 @@
               <div class="d-flex justify-content-around">
                 <button class="btn w-50 mx-2" 
                 :class="{'btn-success': item.estado == true, 'btn-warning': item.estado == false}"
-                @click="(item.estado = !item.estado)">{{ item.estado == true ? "Realizado" : "Incompleto" }}</button>
-                <button class="btn btn-danger w-50 mx-2" @click="eliminarTarea(item.index)">Eliminar</button>
+                @click="editarTarea(index)">{{ item.estado == true ? "Realizado" : "Incompleto" }}
+                </button>
+                <button class="btn btn-danger w-50 mx-2" @click="eliminarTarea(index)">Eliminar</button>
               </div>
             </div>
           </div>

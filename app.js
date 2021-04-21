@@ -28,10 +28,21 @@ const app = new Vue({
             this.arrayTareas.push(objTarea);
             this.titulo = '';
             this.tarea = '';
+
+            localStorage.setItem('tareas-vue', JSON.stringify(this.arrayTareas));
         },
-        eliminarTarea(index){
+        eliminarTarea: function(index){
             this.arrayTareas.splice(index,1);
+            localStorage.setItem('tareas-vue', JSON.stringify(this.arrayTareas));
         },
+        editarTarea: function(i){
+             if(this.arrayTareas[i].estado === true){
+                this.arrayTareas[i].estado = false
+            }else{
+                this.arrayTareas[i].estado = true
+            }
+            localStorage.setItem('tareas-vue', JSON.stringify(this.arrayTareas));
+        }
     },
     computed: {
         color(){
@@ -61,5 +72,13 @@ const app = new Vue({
             return incompletas;
         },
        
-    }
+    },
+    created() {
+        let datosDB = JSON.parse(localStorage.getItem('tareas-vue'));
+        if(datosDB === null){
+            this.arrayTareas = [];
+        }else{
+            this.arrayTareas = datosDB;
+        }
+    },
 })
